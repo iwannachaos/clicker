@@ -21,7 +21,7 @@ ApplicationWindow {
         RowLayout {
             anchors.fill: parent
             Label {
-                text: 'Clicks count: 0'
+                text: 'Clicks count: ' + clicker.clicksCount
                 id: gameStatus
             }
             Label {
@@ -113,9 +113,6 @@ ApplicationWindow {
             }
             onAutoClickUnlocked: {
                 autoClickEnabled = true
-            }
-            onClicksCountChanged: {
-                gameStatus.text = 'Clicks count: ' + clicker.clicksCount
             }
         }
     }
