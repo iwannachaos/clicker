@@ -7,7 +7,7 @@ import clicker 1.0
 ApplicationWindow {
     visible: true
     title: 'Clicker'
-    width: 200
+    width: 250
     height: 200
     minimumWidth: width
     maximumWidth: width
@@ -16,6 +16,7 @@ ApplicationWindow {
 
     property bool x2Enabled: false
     property bool autoClickEnabled: false
+    property string _achivements : ''
 
     statusBar: StatusBar {
         RowLayout {
@@ -25,7 +26,7 @@ ApplicationWindow {
                 id: gameStatus
             }
             Label {
-                id: achivements
+                id: achivementsStatus
                 text: ''
                 color: 'red'
             }
@@ -46,7 +47,7 @@ ApplicationWindow {
                     anchors.centerIn: parent
 
                     onClicked: {
-                        achivements.text = '';
+                        achivementsStatus.text = '';
                         clicker.increaseClicksCount();
                     }
                 }
@@ -101,12 +102,23 @@ ApplicationWindow {
             }
         }
 
+        Tab {
+            id: achivements
+            title: 'Achivements'
+            anchors.margins: 10
+
+            Text {
+                text: _achivements
+            }
+        }
+
         Clicker {
             id: clicker
             onAchivementReached: {
-                achivements.text =
+                achivementsStatus.text =
                         'You\'ve ' + 'clicked ' +
                         clicksCount + ' times';
+                _achivements += clicksCount + '\n'
             }
             onX2Unlocked: {
                 x2Enabled = true
