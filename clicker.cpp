@@ -39,7 +39,7 @@ void Clicker::increaseClicksCount()
         emit x2Unlocked();
     }
 
-    if (_clicksCount == 10000)
+    if (_clicksCount == 10000 || _clicksCount == 10001)
     {
         emit autoClickUnlocked();
     }
